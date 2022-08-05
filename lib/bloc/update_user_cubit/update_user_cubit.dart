@@ -28,7 +28,7 @@ class UpdateUserCubit extends Cubit<UpdateUserState> {
           contentType: MediaType("multipart", "form-data"))));
     }
     print(_formData);
-    final UpdateUserApiResponse apiResponse = await repository.updateUser(_formData);
+    final UpdateUserApiResponse apiResponse = await repository.updateUser(name: name,address: address,phone: phone,imageFile: profileImage);
     if (apiResponse.result == true) {
       emit(SuccessfullyUpdateUser(apiResponse.message ?? "Successfully Update"));
     } else {

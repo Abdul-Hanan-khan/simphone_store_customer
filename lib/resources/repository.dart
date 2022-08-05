@@ -81,7 +81,7 @@ class Repository {
     return CaptainSimGetApi().captainAllSimsRequest(id);
   }
 
-  Future<UpdateUserApiResponse> updateUser(FormData data) async {
-    return UpdateUserPutApi().updateUserRequest(data);
+  Future<UpdateUserApiResponse> updateUser({String ? name,String ? address,String ? phone,XFile ? imageFile,}) async {
+    return UpdateUserPutApi().updateUserRequest(name: name,phone: phone,address: address,imageFile: imageFile);
   }
 }
