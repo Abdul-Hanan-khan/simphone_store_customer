@@ -35,7 +35,7 @@ class GetUserApiResponse {
     _phone = json['phone'];
     _role = json['role'];
     _status = json['status'];
-    _area = json['area'];
+    _area = json['address'];
     if (json['inventory'] != null) {
       _inventory = [];
       json['inventory'].forEach((v) {
