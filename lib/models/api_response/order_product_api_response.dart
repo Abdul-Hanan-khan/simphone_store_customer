@@ -11,7 +11,7 @@ class OrderProductApiResponse {
 }
 
   OrderProductApiResponse.fromJson(dynamic json) {
-    _result = json['result'];
+    _result = json['result']??false;
     _message = json['message'];
     _order = json['order'] != null ? Order.fromJson(json['order']) : null;
   }
@@ -144,8 +144,8 @@ class Order {
 class Customer {
   Customer({
       String? id, 
-      String? name, 
-      int? phone,}){
+      String? name,
+      String? phone,}){
     _id = id;
     _name = name;
     _phone = phone;
@@ -158,11 +158,11 @@ class Customer {
   }
   String? _id;
   String? _name;
-  int? _phone;
+  String? _phone;
 
   String? get id => _id;
   String? get name => _name;
-  int? get phone => _phone;
+  String? get phone => _phone;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

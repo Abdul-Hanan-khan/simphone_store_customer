@@ -59,8 +59,12 @@ class AllSimsCubit extends Cubit<AllSimsState> {
       "address": address,
       "email": email
     };
-
-    final OrderProductApiResponse apiResponse = await repository.simOrderRequest(_formData);
+     OrderProductApiResponse apiResponse=OrderProductApiResponse();
+    try {
+       apiResponse = await repository.simOrderRequest(_formData);
+    } on Exception catch (e) {
+      // TODO
+    }
     if (apiResponse.result == true) {
       emit(SimOrderSuccessfully(apiResponse.message ?? "Sim Order Successfully",apiResponse));
     } else {
