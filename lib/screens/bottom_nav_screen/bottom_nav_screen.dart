@@ -1,4 +1,3 @@
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -10,20 +9,18 @@ import 'package:sim_phone/screens/login.dart';
 import '../home_screen/catergory_screen/catergory__screen.dart';
 import 'map_screen.dart';
 
-
 class BottomNavScreen extends StatefulWidget {
-  const BottomNavScreen({Key? key}) : super(key: key);
+
+  int ?tabNo;
+
+
+  BottomNavScreen(this.tabNo);
 
   @override
   _BottomNavScreenState createState() => _BottomNavScreenState();
 }
 
 class _BottomNavScreenState extends State<BottomNavScreen> {
-
-  int _currentIndex = 0;
-
-
-
 
   final List<String> imgList = [
     'assets/images/sim.png',
@@ -44,53 +41,58 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     'TELENOR',
   ];
 
-    List<Widget> tab = <Widget>[
-      MapScreen(), HomeScreen(),
+  List<Widget> tab = <Widget>[
+    MapScreen(),
+    HomeScreen(),
     OrderScreen(),
   ];
 
 
+
+
   @override
   Widget build(BuildContext context) {
+
+
     Size size = MediaQuery.of(context).size;
+
     return SafeArea(
         child: Scaffold(
-          body: tab[_currentIndex],
-          bottomNavigationBar: SalomonBottomBar(
-            curve: Curves.linear,
-
-            margin: EdgeInsets.symmetric(
-                horizontal: size.width * 0.05, vertical: size.height * 0.01),
-            currentIndex: _currentIndex,
-            onTap: (i) {
-              setState(
-                    () {
-                  _currentIndex = i;
-                },
-              );
+      body: tab[widget.tabNo!],
+      bottomNavigationBar: SalomonBottomBar(
+        curve: Curves.linear,
+        margin: EdgeInsets.symmetric(
+            horizontal: size.width * 0.05, vertical: size.height * 0.01),
+        currentIndex: widget.tabNo!,
+        onTap: (i) {
+          setState(
+            () {
+              widget.tabNo = i;
             },
-            items: [
-              /// Home
-              SalomonBottomBarItem(
-                icon: const Icon(Icons.map),
-                title: const Text("Map"),
-                selectedColor: Colors.red.shade400,
-              ),
-
-              SalomonBottomBarItem(
-                icon: const Icon(Icons.home),
-                title: const Text("Home"),
-                selectedColor: Colors.green.shade400,
-              ),
-
-              /// Profile
-              SalomonBottomBarItem(
-                icon: const Icon(Icons.delivery_dining),
-                title: const Text("Order"),
-                selectedColor: Colors.green.shade400,
-              ),
-            ],
+          );
+        },
+        items: [
+          /// Home
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.map),
+            title: const Text("Map"),
+            selectedColor: Colors.red.shade400,
           ),
-        ));
+
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.home),
+            title: const Text("Home"),
+            selectedColor: Colors.green.shade400,
+          ),
+
+          /// Profile
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.delivery_dining),
+            title: const Text("Order"),
+            selectedColor: Colors.green.shade400,
+          ),
+        ],
+      ),
+    ));
   }
 }

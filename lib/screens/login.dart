@@ -70,7 +70,7 @@ class _LoginState extends State<Login> {
             storeNameToken(state.response!.data!.user!.name!);
             storeEmailToken(state.response!.data!.user!.email!);
             storePhoneToken(state.response!.data!.user!.phone!.toString());
-            Nav.pushAndRemoveAllRoute(context, const BottomNavScreen());
+            Nav.pushAndRemoveAllRoute(context,  BottomNavScreen(0));
           }
         },
         builder: (context, state) {

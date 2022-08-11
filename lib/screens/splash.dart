@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     Future.delayed(const Duration(seconds: 3)).then((value) {
       if (GetStorage().read('token') != null) {
-        Timer(const Duration(seconds: 1), () => Nav.pushAndRemoveAllRoute(context, const BottomNavScreen()));
+        Timer(const Duration(seconds: 1), () => Nav.pushAndRemoveAllRoute(context,  BottomNavScreen(0)));
       } else {
         Timer(const Duration(seconds: 1), () => Nav.push(context, const WalkthroughScreen()));
       }

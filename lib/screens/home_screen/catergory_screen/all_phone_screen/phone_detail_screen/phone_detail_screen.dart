@@ -12,6 +12,7 @@ import '../../../../../models/api_response/order_product_api_response.dart';
 import '../../../../../ui_components/show_snack_bar.dart';
 import '../../../../../utils/api_constants/api_constants.dart';
 import '../../../../../utils/navigation_controller/navigator_screen.dart';
+import '../../../../bottom_nav_screen/bottom_nav_screen.dart';
 import '../../sims_no_screen/sim_detail_screen/google_map_search.dart';
 
 class PhoneDetailScreen extends StatefulWidget {
@@ -153,6 +154,11 @@ class _PhoneDetailScreenState extends State<PhoneDetailScreen> {
               );
             },
           ),
+          actions: [
+            FlatButton(onPressed: (){
+              Nav.pushReplace(context, BottomNavScreen(2));
+            } , child: const Text('ok',style: TextStyle(color: Colors.green,fontSize: 19),))
+          ],
         );
       },
     );
@@ -176,10 +182,10 @@ class _PhoneDetailScreenState extends State<PhoneDetailScreen> {
           if (state is OrderPhoneSuccessfully) {
             _showDialog(state.orderProductApiResponse);
             showSnackBar(context, state.message, type: SnackBarType.success);
-            Future.delayed(const Duration(seconds: 3)).then((value) {
-              backScreen(context);
-              Nav.pop(context);
-            });
+            // Future.delayed(const Duration(seconds: 3)).then((value) {
+            //   backScreen(context);
+            //   Nav.pop(context);
+            // });
           }
         },
         builder: (context, state) {

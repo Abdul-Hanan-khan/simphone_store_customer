@@ -4,6 +4,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:sim_phone/models/api_response/all_devices_api_response.dart';
+import 'package:sim_phone/screens/bottom_nav_screen/bottom_nav_screen.dart';
 import 'package:sim_phone/ui_components/loading_screen_animation.dart';
 
 import '../../../../../bloc/all_devices_cubit/all_devices_cubit.dart';
@@ -58,7 +59,7 @@ class _DeviceDetailScreenState extends State<DeviceDetailScreen> {
     super.initState();
   }
 
-  _showDialog(OrderProductApiResponse orderProductApiResponse) {
+  _showDialog(OrderProductApiResponse orderProductApiResponse,{Function? onPressedOk}) {
     return showDialog(
       context: context,
       builder: (context) {
@@ -153,6 +154,11 @@ class _DeviceDetailScreenState extends State<DeviceDetailScreen> {
               );
             },
           ),
+          actions: [
+            FlatButton(onPressed: (){
+              Nav.pushReplace(context, BottomNavScreen(2));
+            } , child: const Text('ok',style: TextStyle(color: Colors.green,fontSize: 20),))
+          ],
         );
       },
     );
@@ -176,10 +182,10 @@ class _DeviceDetailScreenState extends State<DeviceDetailScreen> {
             _showDialog(state.orderProductApiResponse);
             showSnackBar(context, state.message, type: SnackBarType.success);
             // backScreen(context);
-            Future.delayed(const Duration(seconds: 3)).then((value) {
-              backScreen(context);
-              Nav.pop(context);
-            });
+            // Future.delayed(const Duration(seconds: 3)).then((value) {
+            //   backScreen(context);
+            //   Nav.pop(context);
+            // });
           }
         },
         builder: (context, state) {

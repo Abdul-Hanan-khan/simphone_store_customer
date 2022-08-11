@@ -2,7 +2,7 @@ class Captain {
   Captain({
     String? id,
     String? name,
-    int? phone,
+    String? phone,
     String? area,}){
     _id = id;
     _name = name;
@@ -18,12 +18,12 @@ class Captain {
   }
   String? _id;
   String? _name;
-  int? _phone;
+  String? _phone;
   String? _area;
 
   String? get id => _id;
   String? get name => _name;
-  int? get phone => _phone;
+  String? get phone => _phone;
   String? get area => _area;
 
   Map<String, dynamic> toJson() {

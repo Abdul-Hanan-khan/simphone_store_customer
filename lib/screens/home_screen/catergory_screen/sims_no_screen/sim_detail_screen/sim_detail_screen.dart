@@ -11,6 +11,7 @@ import 'package:sim_phone/ui_components/show_snack_bar.dart';
 
 import '../../../../../models/data_models/sim.dart';
 import '../../../../../utils/navigation_controller/navigator_screen.dart';
+import '../../../../bottom_nav_screen/bottom_nav_screen.dart';
 import 'google_map_search.dart';
 
 class SimDetailScreen extends StatefulWidget {
@@ -148,6 +149,11 @@ class _SimDetailScreenState extends State<SimDetailScreen> {
               );
             },
           ),
+          actions: [
+            FlatButton(onPressed: (){
+              Nav.pushReplace(context, BottomNavScreen(2));
+            } , child: const Text('ok',style: TextStyle(color: Colors.green,fontSize: 20),))
+          ],
         );
       },
     );
@@ -172,10 +178,10 @@ class _SimDetailScreenState extends State<SimDetailScreen> {
             _showDialog(state.orderProductApiResponse);
             showSnackBar(context, state.message, type: SnackBarType.success);
             // backScreen(context);
-            Future.delayed(const Duration(seconds: 3)).then((value) {
-              backScreen(context);
-              Nav.pop(context);
-            });
+            // Future.delayed(const Duration(seconds: 3)).then((value) {
+            //   backScreen(context);
+            //   Nav.pop(context);
+            // });
           }
         },
         builder: (context, state) {
